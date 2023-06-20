@@ -1,4 +1,4 @@
-extends ViewportContainer
+extends SubViewportContainer
 
 
 var angle := Vector3(0.0, 0.0, 0.0)
@@ -6,11 +6,11 @@ var distance := 0.4
 var _looking := false
 var _mouse_over := false
 
-onready var camera := $Viewport/Scene/Camera
+@onready var camera := $Viewport/Scene/Camera
 
 func _ready():
-	connect("mouse_entered", self, "_on_mouse_entered")
-	connect("mouse_exited", self, "_on_mouse_exited")
+	connect("mouse_entered", Callable(self, "_on_mouse_entered"))
+	connect("mouse_exited", Callable(self, "_on_mouse_exited"))
 
 
 func _input(event):
@@ -24,7 +24,7 @@ func _input(event):
 	var button := event as InputEventMouseButton
 	if button:
 		# Handle left-button-drag capture and release
-		if button.button_index == BUTTON_LEFT:
+		if button.button_index == MOUSE_BUTTON_LEFT:
 			if button.is_pressed():
 				_looking = true
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -33,12 +33,12 @@ func _input(event):
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 		# Handle zoom-in
-		if button.button_index == BUTTON_WHEEL_UP:
+		if button.button_index == MOUSE_BUTTON_WHEEL_UP:
 			distance = max(distance - 0.01, 0.2)
 			update = true
 
 		# Handle zoom-out
-		if button.button_index == BUTTON_WHEEL_DOWN:
+		if button.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			distance = min(distance + 0.01, 1.0)
 			update = true
 
@@ -52,8 +52,8 @@ func _input(event):
 
 	# Handle moving camera if updated
 	if update:
-		var basis = Basis(angle)
-		camera.global_transform.origin = basis.xform(Vector3(0, 0, distance))
+		var basis = Basis.from_euler(angle)
+		camera.global_transform.origin = basis * (Vector3(0, 0, distance))
 		camera.global_transform.basis = basis
 
 

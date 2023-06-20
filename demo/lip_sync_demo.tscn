@@ -1,169 +1,138 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=13 format=3 uid="uid://bl0uek7loh4is"]
 
-[ext_resource path="res://assets/head/LipSync_Head.gltf" type="PackedScene" id=1]
-[ext_resource path="res://demo/mouse_look_viewport.gd" type="Script" id=2]
-[ext_resource path="res://demo/audio_stream_player.gd" type="Script" id=3]
-[ext_resource path="res://addons/godot-lip-sync/talking_head.gd" type="Script" id=4]
-[ext_resource path="res://demo/lip_sync_demo.gd" type="Script" id=5]
-[ext_resource path="res://addons/godot-lip-sync/lip_sync.gd" type="Script" id=6]
-[ext_resource path="res://demo/main_menu_bar.gd" type="Script" id=7]
-[ext_resource path="res://demo/calibration_tree.gd" type="Script" id=8]
-[ext_resource path="res://assets/misc/1x1.png" type="Texture" id=9]
-[ext_resource path="res://demo/fingerprint_tab.gd" type="Script" id=10]
-[ext_resource path="res://demo/inspector_tab.gd" type="Script" id=11]
-[ext_resource path="res://assets/fonts.google.com/opensans_10.tres" type="Theme" id=12]
-[ext_resource path="res://demo/phonemes_tab.gd" type="Script" id=13]
-[ext_resource path="res://demo/visemes_tab.gd" type="Script" id=14]
+[ext_resource type="PackedScene" uid="uid://cufrsxoujltey" path="res://assets/head/LipSync_Head.gltf" id="1"]
+[ext_resource type="Script" path="res://demo/mouse_look_viewport.gd" id="2"]
+[ext_resource type="Script" path="res://demo/audio_stream_player.gd" id="3"]
+[ext_resource type="Script" path="res://addons/godot-lip-sync/talking_head.gd" id="4"]
+[ext_resource type="Script" path="res://demo/lip_sync_demo.gd" id="5"]
+[ext_resource type="Script" path="res://addons/godot-lip-sync/lip_sync.gd" id="6"]
+[ext_resource type="Script" path="res://demo/main_menu_bar.gd" id="7"]
+[ext_resource type="Script" path="res://demo/calibration_tree.gd" id="8"]
+[ext_resource type="Script" path="res://demo/fingerprint_tab.gd" id="10"]
+[ext_resource type="Script" path="res://demo/inspector_tab.gd" id="11"]
+[ext_resource type="Script" path="res://demo/phonemes_tab.gd" id="13"]
+[ext_resource type="Script" path="res://demo/visemes_tab.gd" id="14"]
 
 [node name="LipSyncDemo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 5 )
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.14902, 0.172549, 0.231373, 1 )
+color = Color(0.14902, 0.172549, 0.231373, 1)
 
 [node name="MainMenuBar" type="HBoxContainer" parent="."]
-margin_top = 5.0
-margin_right = 134.0
-margin_bottom = 20.0
-script = ExtResource( 7 )
+layout_mode = 0
+script = ExtResource("7")
 
 [node name="FileMenu" type="MenuButton" parent="MainMenuBar"]
-margin_right = 35.0
-margin_bottom = 20.0
+layout_mode = 2
 text = "File"
 switch_on_hover = true
 
 [node name="AudioMenu" type="MenuButton" parent="MainMenuBar"]
-margin_left = 39.0
-margin_right = 88.0
-margin_bottom = 20.0
+layout_mode = 2
 focus_mode = 2
 text = "Audio"
 switch_on_hover = true
 
 [node name="HelpMenu" type="MenuButton" parent="MainMenuBar"]
-margin_left = 92.0
-margin_right = 134.0
-margin_bottom = 20.0
+layout_mode = 2
 focus_mode = 2
 text = "Help"
 switch_on_hover = true
 
 [node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 40.0
 
 [node name="CalibrationTree" type="Tree" parent="HSplitContainer"]
-margin_right = 300.0
-margin_bottom = 560.0
-rect_min_size = Vector2( 300, 0 )
+layout_mode = 2
 columns = 2
 hide_root = true
-script = ExtResource( 8 )
+script = ExtResource("8")
 
 [node name="VSplitContainer" type="VSplitContainer" parent="HSplitContainer"]
-margin_left = 312.0
-margin_right = 1024.0
-margin_bottom = 560.0
+layout_mode = 2
 
-[node name="ViewportContainer" type="ViewportContainer" parent="HSplitContainer/VSplitContainer"]
-margin_right = 712.0
-margin_bottom = 368.0
+[node name="ViewportContainer" type="SubViewportContainer" parent="HSplitContainer/VSplitContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 stretch = true
-script = ExtResource( 2 )
+script = ExtResource("2")
 
-[node name="Viewport" type="Viewport" parent="HSplitContainer/VSplitContainer/ViewportContainer"]
-size = Vector2( 712, 368 )
+[node name="Viewport" type="SubViewport" parent="HSplitContainer/VSplitContainer/ViewportContainer"]
 handle_input_locally = false
-render_target_update_mode = 3
+size = Vector2i(1140, 605)
+render_target_update_mode = 4
 
-[node name="Scene" type="Spatial" parent="HSplitContainer/VSplitContainer/ViewportContainer/Viewport"]
+[node name="Scene" type="Node3D" parent="HSplitContainer/VSplitContainer/ViewportContainer/Viewport"]
 
-[node name="LipSync_Head" parent="HSplitContainer/VSplitContainer/ViewportContainer/Viewport/Scene" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
+[node name="LipSync_Head" parent="HSplitContainer/VSplitContainer/ViewportContainer/Viewport/Scene" instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 
 [node name="Human_Head" parent="HSplitContainer/VSplitContainer/ViewportContainer/Viewport/Scene/LipSync_Head" index="0"]
-script = ExtResource( 4 )
+script = ExtResource("4")
 lip_sync_path = NodePath("../../../../../../../LipSync")
 
-[node name="Camera" type="Camera" parent="HSplitContainer/VSplitContainer/ViewportContainer/Viewport/Scene"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.4 )
+[node name="Camera" type="Camera3D" parent="HSplitContainer/VSplitContainer/ViewportContainer/Viewport/Scene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.4)
 
-[node name="DirectionalLight" type="DirectionalLight" parent="HSplitContainer/VSplitContainer/ViewportContainer/Viewport/Scene"]
-transform = Transform( 0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573577, -0.707107, -0.40558, 0.579228, 0, 0, 0 )
+[node name="DirectionalLight" type="DirectionalLight3D" parent="HSplitContainer/VSplitContainer/ViewportContainer/Viewport/Scene"]
+transform = Transform3D(0.707107, -0.40558, 0.579228, 0, 0.819152, 0.573577, -0.707107, -0.40558, 0.579228, 0, 0, 0)
 light_energy = 0.5
 
 [node name="HSplitContainer" type="HSplitContainer" parent="HSplitContainer/VSplitContainer"]
-margin_top = 380.0
-margin_right = 712.0
-margin_bottom = 560.0
-rect_min_size = Vector2( 0, 180 )
+layout_mode = 2
 split_offset = -150
 
 [node name="InspectorTabContainer" type="TabContainer" parent="HSplitContainer/VSplitContainer/HSplitContainer"]
-margin_right = 200.0
-margin_bottom = 180.0
+layout_mode = 2
 size_flags_horizontal = 3
-tab_align = 0
 
-[node name="Inspector" type="Tabs" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 32.0
-margin_right = -4.0
-margin_bottom = -4.0
-script = ExtResource( 11 )
+[node name="Inspector" type="TabBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer"]
+layout_mode = 2
+script = ExtResource("11")
 calibration_tree = NodePath("../../../../CalibrationTree")
 
 [node name="Description" type="RichTextLabel" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector"]
 visible = false
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
 text = "To inspect a calibration item, select it in the calibration tree."
 
 [node name="VisemeContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector"]
 visible = false
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
 
 [node name="VisemeDescription" type="RichTextLabel" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/VisemeContainer"]
-margin_right = 172.0
-margin_bottom = 100.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/VisemeContainer"]
-margin_top = 104.0
-margin_right = 172.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 0, 20 )
+layout_mode = 2
 
 [node name="Label" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/VisemeContainer/HBoxContainer"]
-margin_top = 3.0
-margin_right = 45.0
-margin_bottom = 17.0
+layout_mode = 2
 text = "Weight"
 
 [node name="WeightSlider" type="HSlider" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/VisemeContainer/HBoxContainer"]
-margin_left = 49.0
-margin_right = 172.0
-margin_bottom = 16.0
+layout_mode = 2
 size_flags_horizontal = 3
 min_value = 0.001
 max_value = 2.0
@@ -172,1584 +141,1003 @@ value = 0.001
 
 [node name="PhonemeDescription" type="RichTextLabel" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector"]
 visible = false
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
 
 [node name="FingerprintBars" type="HBoxContainer" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector"]
 visible = false
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Bar1" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
-margin_right = 4.0
-margin_bottom = 124.0
+[node name="Bar1" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar2" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
-margin_left = 8.0
-margin_right = 13.0
-margin_bottom = 124.0
+[node name="Bar2" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar3" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
-margin_left = 17.0
-margin_right = 22.0
-margin_bottom = 124.0
+[node name="Bar3" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar4" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
-margin_left = 26.0
-margin_right = 31.0
-margin_bottom = 124.0
+[node name="Bar4" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar5" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
-margin_left = 35.0
-margin_right = 40.0
-margin_bottom = 124.0
+[node name="Bar5" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar6" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
-margin_left = 44.0
-margin_right = 48.0
-margin_bottom = 124.0
+[node name="Bar6" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar7" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
-margin_left = 52.0
-margin_right = 57.0
-margin_bottom = 124.0
+[node name="Bar7" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar8" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
-margin_left = 61.0
-margin_right = 66.0
-margin_bottom = 124.0
+[node name="Bar8" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar9" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
-margin_left = 70.0
-margin_right = 75.0
-margin_bottom = 124.0
+[node name="Bar9" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar10" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
-margin_left = 79.0
-margin_right = 84.0
-margin_bottom = 124.0
+[node name="Bar10" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar11" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
-margin_left = 88.0
-margin_right = 92.0
-margin_bottom = 124.0
+[node name="Bar11" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar12" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
-margin_left = 96.0
-margin_right = 101.0
-margin_bottom = 124.0
+[node name="Bar12" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar13" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
-margin_left = 105.0
-margin_right = 110.0
-margin_bottom = 124.0
+[node name="Bar13" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar14" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
-margin_left = 114.0
-margin_right = 119.0
-margin_bottom = 124.0
+[node name="Bar14" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar15" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
-margin_left = 123.0
-margin_right = 128.0
-margin_bottom = 124.0
+[node name="Bar15" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar16" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
-margin_left = 132.0
-margin_right = 136.0
-margin_bottom = 124.0
+[node name="Bar16" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar17" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
-margin_left = 140.0
-margin_right = 145.0
-margin_bottom = 124.0
+[node name="Bar17" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar18" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
-margin_left = 149.0
-margin_right = 154.0
-margin_bottom = 124.0
+[node name="Bar18" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar19" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
-margin_left = 158.0
-margin_right = 163.0
-margin_bottom = 124.0
+[node name="Bar19" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar20" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
-margin_left = 167.0
-margin_right = 172.0
-margin_bottom = 124.0
+[node name="Bar20" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
 [node name="LiveTabContainer" type="TabContainer" parent="HSplitContainer/VSplitContainer/HSplitContainer"]
-margin_left = 212.0
-margin_right = 712.0
-margin_bottom = 180.0
-rect_min_size = Vector2( 0, 180 )
+layout_mode = 2
 size_flags_horizontal = 3
-tab_align = 0
 
-[node name="Fingerprint" type="Tabs" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 32.0
-margin_right = -4.0
-margin_bottom = -4.0
-script = ExtResource( 10 )
+[node name="Fingerprint" type="TabBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer"]
+layout_mode = 2
+script = ExtResource("10")
 
 [node name="FingerprintBars" type="HBoxContainer" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint"]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = 5.0
-margin_right = -5.0
-margin_bottom = -5.0
 
-[node name="Bar1" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
-margin_right = 20.0
-margin_bottom = 134.0
+[node name="Bar1" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar2" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
-margin_left = 24.0
-margin_right = 44.0
-margin_bottom = 134.0
+[node name="Bar2" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar3" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
-margin_left = 48.0
-margin_right = 68.0
-margin_bottom = 134.0
+[node name="Bar3" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar4" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
-margin_left = 72.0
-margin_right = 93.0
-margin_bottom = 134.0
+[node name="Bar4" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar5" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
-margin_left = 97.0
-margin_right = 117.0
-margin_bottom = 134.0
+[node name="Bar5" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar6" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
-margin_left = 121.0
-margin_right = 141.0
-margin_bottom = 134.0
+[node name="Bar6" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar7" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
-margin_left = 145.0
-margin_right = 166.0
-margin_bottom = 134.0
+[node name="Bar7" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar8" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
-margin_left = 170.0
-margin_right = 190.0
-margin_bottom = 134.0
+[node name="Bar8" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar9" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
-margin_left = 194.0
-margin_right = 214.0
-margin_bottom = 134.0
+[node name="Bar9" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar10" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
-margin_left = 218.0
-margin_right = 238.0
-margin_bottom = 134.0
+[node name="Bar10" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar11" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
-margin_left = 242.0
-margin_right = 263.0
-margin_bottom = 134.0
+[node name="Bar11" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar12" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
-margin_left = 267.0
-margin_right = 287.0
-margin_bottom = 134.0
+[node name="Bar12" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar13" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
-margin_left = 291.0
-margin_right = 311.0
-margin_bottom = 134.0
+[node name="Bar13" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar14" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
-margin_left = 315.0
-margin_right = 336.0
-margin_bottom = 134.0
+[node name="Bar14" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar15" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
-margin_left = 340.0
-margin_right = 360.0
-margin_bottom = 134.0
+[node name="Bar15" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar16" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
-margin_left = 364.0
-margin_right = 384.0
-margin_bottom = 134.0
+[node name="Bar16" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar17" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
-margin_left = 388.0
-margin_right = 409.0
-margin_bottom = 134.0
+[node name="Bar17" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar18" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
-margin_left = 413.0
-margin_right = 433.0
-margin_bottom = 134.0
+[node name="Bar18" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar19" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
-margin_left = 437.0
-margin_right = 457.0
-margin_bottom = 134.0
+[node name="Bar19" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar20" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
-margin_left = 461.0
-margin_right = 482.0
-margin_bottom = 134.0
+[node name="Bar20" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Phonemes" type="Tabs" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer"]
+[node name="Phonemes" type="TabBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer"]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 32.0
-margin_right = -4.0
-margin_bottom = -4.0
-script = ExtResource( 13 )
+layout_mode = 2
+script = ExtResource("13")
 
 [node name="GridContainer" type="GridContainer" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes"]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
 columns = 23
 
-[node name="Bar1" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_right = 16.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar1" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar2" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 20.0
-margin_right = 36.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar2" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar3" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 40.0
-margin_right = 56.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar3" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar4" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 60.0
-margin_right = 76.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar4" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar5" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 80.0
-margin_right = 96.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar5" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar6" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 100.0
-margin_right = 116.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar6" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar7" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 120.0
-margin_right = 136.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar7" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar8" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 140.0
-margin_right = 156.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar8" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar9" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 160.0
-margin_right = 176.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar9" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar10" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 180.0
-margin_right = 196.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar10" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar11" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 200.0
-margin_right = 216.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar11" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar12" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 220.0
-margin_right = 236.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar12" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar13" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 240.0
-margin_right = 256.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar13" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar14" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 260.0
-margin_right = 276.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar14" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar15" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 280.0
-margin_right = 296.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar15" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar16" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 300.0
-margin_right = 316.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar16" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar17" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 320.0
-margin_right = 336.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar17" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar18" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 340.0
-margin_right = 356.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar18" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar19" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 360.0
-margin_right = 376.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar19" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar20" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 380.0
-margin_right = 396.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar20" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar21" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 400.0
-margin_right = 416.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar21" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar22" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 420.0
-margin_right = 436.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar22" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar23" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 440.0
-margin_right = 456.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar23" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
 [node name="LabelTS" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_top = 110.0
-margin_right = 16.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 12 )
 text = "tS"
-align = 1
 
 [node name="LabelDZ" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 20.0
-margin_top = 110.0
-margin_right = 36.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 12 )
 text = "dZ"
-align = 1
 
 [node name="LabelSH" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 40.0
-margin_top = 110.0
-margin_right = 56.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 12 )
 text = "S"
-align = 1
 
 [node name="LabelT" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 60.0
-margin_top = 110.0
-margin_right = 76.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
-theme = ExtResource( 12 )
+layout_mode = 2
 text = "t"
-align = 1
 
 [node name="LabelD" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 80.0
-margin_top = 110.0
-margin_right = 96.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
-theme = ExtResource( 12 )
+layout_mode = 2
 text = "d"
-align = 1
 
 [node name="LabelE" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 100.0
-margin_top = 110.0
-margin_right = 116.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
-theme = ExtResource( 12 )
+layout_mode = 2
 text = "e"
-align = 1
 
 [node name="LabelF" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 120.0
-margin_top = 110.0
-margin_right = 136.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
-theme = ExtResource( 12 )
+layout_mode = 2
 text = "f"
-align = 1
 
 [node name="LabelV" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 140.0
-margin_top = 110.0
-margin_right = 156.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
-theme = ExtResource( 12 )
+layout_mode = 2
 text = "v"
-align = 1
 
 [node name="LabelI" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 160.0
-margin_top = 110.0
-margin_right = 176.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
-theme = ExtResource( 12 )
+layout_mode = 2
 text = "I	"
-align = 1
 
 [node name="LabelO" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 180.0
-margin_top = 110.0
-margin_right = 196.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
-theme = ExtResource( 12 )
+layout_mode = 2
 text = "O"
-align = 1
 
 [node name="LabelP" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 200.0
-margin_top = 110.0
-margin_right = 216.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
-theme = ExtResource( 12 )
+layout_mode = 2
 text = "p"
-align = 1
 
 [node name="LabelB" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 220.0
-margin_top = 110.0
-margin_right = 236.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
-theme = ExtResource( 12 )
+layout_mode = 2
 text = "b	"
-align = 1
 
 [node name="LabelM" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 240.0
-margin_top = 110.0
-margin_right = 256.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
-theme = ExtResource( 12 )
+layout_mode = 2
 text = "m"
-align = 1
 
 [node name="LabelR" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 260.0
-margin_top = 110.0
-margin_right = 276.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
-theme = ExtResource( 12 )
+layout_mode = 2
 text = "r"
-align = 1
 
 [node name="LabelS" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 280.0
-margin_top = 110.0
-margin_right = 296.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
-theme = ExtResource( 12 )
+layout_mode = 2
 text = "s"
-align = 1
 
 [node name="LabelZ" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 300.0
-margin_top = 110.0
-margin_right = 316.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
-theme = ExtResource( 12 )
+layout_mode = 2
 text = "z"
-align = 1
 
 [node name="LabelTH" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 320.0
-margin_top = 110.0
-margin_right = 336.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
-theme = ExtResource( 12 )
+layout_mode = 2
 text = "T"
-align = 1
 
 [node name="LabelOU" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 340.0
-margin_top = 110.0
-margin_right = 356.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
-theme = ExtResource( 12 )
+layout_mode = 2
 text = "u"
-align = 1
 
 [node name="LabelA" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 360.0
-margin_top = 110.0
-margin_right = 376.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
-theme = ExtResource( 12 )
+layout_mode = 2
 text = "A"
-align = 1
 
 [node name="LabelK" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 380.0
-margin_top = 110.0
-margin_right = 396.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
-theme = ExtResource( 12 )
+layout_mode = 2
 text = "k"
-align = 1
 
 [node name="LabelG" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 400.0
-margin_top = 110.0
-margin_right = 416.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
-theme = ExtResource( 12 )
+layout_mode = 2
 text = "g"
-align = 1
 
 [node name="LabelN" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 420.0
-margin_top = 110.0
-margin_right = 436.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
-theme = ExtResource( 12 )
+layout_mode = 2
 text = "n"
-align = 1
 
 [node name="LabelL" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
-margin_left = 440.0
-margin_top = 110.0
-margin_right = 456.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
-theme = ExtResource( 12 )
+layout_mode = 2
 text = "l"
-align = 1
 
-[node name="Visemes" type="Tabs" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer"]
+[node name="Visemes" type="TabBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer"]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 32.0
-margin_right = -4.0
-margin_bottom = -4.0
-script = ExtResource( 14 )
+layout_mode = 2
+script = ExtResource("14")
 
 [node name="GridContainer" type="GridContainer" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes"]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
-rect_pivot_offset = Vector2( -854, -371 )
 columns = 15
 
-[node name="Bar1" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_right = 28.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar1" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar2" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 32.0
-margin_right = 60.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar2" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar3" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 64.0
-margin_right = 92.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar3" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar4" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 96.0
-margin_right = 124.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar4" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar5" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 128.0
-margin_right = 156.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar5" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar6" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 160.0
-margin_right = 188.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar6" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar7" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 192.0
-margin_right = 220.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar7" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar8" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 224.0
-margin_right = 252.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar8" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar9" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 256.0
-margin_right = 284.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar9" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar10" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 288.0
-margin_right = 316.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar10" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar11" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 320.0
-margin_right = 348.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar11" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar12" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 352.0
-margin_right = 379.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar12" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar13" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 383.0
-margin_right = 410.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar13" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar14" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 414.0
-margin_right = 441.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar14" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
-[node name="Bar15" type="TextureProgress" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 445.0
-margin_right = 472.0
-margin_bottom = 106.0
-rect_min_size = Vector2( 12, 0 )
+[node name="Bar15" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.0
 value = 1.0
-texture_progress = ExtResource( 9 )
 fill_mode = 3
 nine_patch_stretch = true
 
 [node name="LabelSil" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_top = 110.0
-margin_right = 28.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 12 )
 text = "sil"
-align = 1
 
 [node name="LabelCH" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 32.0
-margin_top = 110.0
-margin_right = 60.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 12 )
 text = "CH"
-align = 1
 
 [node name="LabelDD" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 64.0
-margin_top = 110.0
-margin_right = 92.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 12 )
 text = "DD"
-align = 1
 
 [node name="LabelE" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 96.0
-margin_top = 110.0
-margin_right = 124.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 12 )
 text = "E"
-align = 1
 
 [node name="LabelFF" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 128.0
-margin_top = 110.0
-margin_right = 156.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 12 )
 text = "FF"
-align = 1
 
 [node name="LabelI" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 160.0
-margin_top = 110.0
-margin_right = 188.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 12 )
 text = "I"
-align = 1
 
 [node name="LabelO" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 192.0
-margin_top = 110.0
-margin_right = 220.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 12 )
 text = "O"
-align = 1
 
 [node name="LabelPP" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 224.0
-margin_top = 110.0
-margin_right = 252.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 12 )
 text = "PP"
-align = 1
 
 [node name="LabelRR" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 256.0
-margin_top = 110.0
-margin_right = 284.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 12 )
 text = "RR"
-align = 1
 
 [node name="LabelSS" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 288.0
-margin_top = 110.0
-margin_right = 316.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 12 )
 text = "SS"
-align = 1
 
 [node name="LabelTH" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 320.0
-margin_top = 110.0
-margin_right = 348.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 12 )
 text = "TH"
-align = 1
 
 [node name="LabelU" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 352.0
-margin_top = 110.0
-margin_right = 379.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 12 )
 text = "U"
-align = 1
 
 [node name="LabelAA" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 383.0
-margin_top = 110.0
-margin_right = 410.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 12 )
 text = "aa"
-align = 1
 
 [node name="LabelKK" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 414.0
-margin_top = 110.0
-margin_right = 441.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 12 )
 text = "kk"
-align = 1
 
 [node name="LabelNN" type="Label" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]
-margin_left = 445.0
-margin_top = 110.0
-margin_right = 472.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 12, 0 )
+layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource( 12 )
 text = "nn"
-align = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-bus = "Speech"
-script = ExtResource( 3 )
+bus = &"Speech"
+script = ExtResource("3")
 
 [node name="LipSync" type="Node" parent="."]
-script = ExtResource( 6 )
+script = ExtResource("6")
 audio_bus_name = "Speech"
 add_microphone = false
 mute_audio = false
 
 [node name="ConfirmProceedDialog" type="ConfirmationDialog" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -250.0
-margin_top = -50.0
-margin_right = 250.0
-margin_bottom = 50.0
 dialog_text = "The current audio training resource data is modified. Do you wish to proceed and discard the changes?"
 dialog_autowrap = true
 
 [node name="LoadTrainingFileDialog" type="FileDialog" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -250.0
-margin_top = -150.0
-margin_right = 250.0
-margin_bottom = 150.0
-window_title = "Open Training Resource File"
 mode_overrides_title = false
-mode = 0
 access = 2
-filters = PoolStringArray( "*.tres; Resource Files" )
-current_dir = "/Work/godot3/godot-lip-sync"
-current_path = "/Work/godot3/godot-lip-sync/"
+filters = PackedStringArray("*.tres; Resource Files")
 
 [node name="SaveAsTrainingFileDialog" type="FileDialog" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -250.0
-margin_top = -150.0
-margin_right = 250.0
-margin_bottom = 150.0
-window_title = "Save Training Resource File As"
 mode_overrides_title = false
 access = 2
-filters = PoolStringArray( "*.tres; Resource Files" )
-current_dir = "/Work/godot3/godot-lip-sync"
-current_path = "/Work/godot3/godot-lip-sync/"
+filters = PackedStringArray("*.tres; Resource Files")
 
 [node name="AudioFileDialog" type="FileDialog" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -250.0
-margin_top = -150.0
-margin_right = 250.0
-margin_bottom = 150.0
-window_title = "Open Audio File"
-resizable = true
 mode_overrides_title = false
-mode = 0
 access = 2
-filters = PoolStringArray( "*.mp3; MP3 Files", "*.ogg; Ogg Files" )
-current_dir = "/Work/godot3/godot-lip-sync"
-current_path = "/Work/godot3/godot-lip-sync/"
+filters = PackedStringArray("*.mp3; MP3 Files", "*.ogg; Ogg Files")
 
-[node name="AboutDialog" type="WindowDialog" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -300.0
-margin_top = -100.0
-margin_right = 300.0
-margin_bottom = 100.0
-window_title = "About Godot LipSync Demo"
-resizable = true
+[node name="AboutDialog" type="AcceptDialog" parent="."]
 
 [node name="RichTextLabel" type="RichTextLabel" parent="AboutDialog"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
 text = "Godot LipSync Demo v0.0.0
 
 The Godot LipSync Demo application allows for evaluating lip-sync performance against bundled audio, microphone input, and external audio files.

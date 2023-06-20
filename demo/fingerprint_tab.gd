@@ -1,4 +1,4 @@
-extends Tabs
+extends TabBar
 
 
 
@@ -26,5 +26,5 @@ func _process(delta: float):
 	#var max_scale = 0.1
 
 	for i in LipSyncFingerprint.BANDS_COUNT:
-		var bar: TextureProgress = $FingerprintBars.get_child(i)
+		var bar: TextureProgressBar = $FingerprintBars.get_child(i)
 		bar.value = _fingerprint.values[i] * max_scale

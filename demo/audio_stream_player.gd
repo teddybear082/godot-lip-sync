@@ -27,14 +27,13 @@ func play_resource(name: String):
 
 func play_file(file_name: String):
 	# Load the file
-	var file := File.new()
-	file.open(file_name, File.READ)
+	var file = FileAccess.open(file_name, FileAccess.READ)
 	var data = file.get_buffer(file.get_len())
 	file.close()
 
 	# Play the stream
 	if file_name.ends_with(".ogg"):
-		var ogg_stream = AudioStreamOGGVorbis.new()
+		var ogg_stream = AudioStreamOggVorbis.new()
 		ogg_stream.data = data
 		ogg_stream.loop = true
 		_play_stream(ogg_stream, false)

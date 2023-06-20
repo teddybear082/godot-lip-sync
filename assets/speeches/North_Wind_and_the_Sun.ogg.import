@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/North_Wind_and_the_Sun.ogg-ce5262eb75ba71cbb5197ccf59d72972.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cyo6b8byjohy6"
+path="res://.godot/imported/North_Wind_and_the_Sun.ogg-ce5262eb75ba71cbb5197ccf59d72972.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/speeches/North_Wind_and_the_Sun.ogg"
-dest_files=[ "res://.import/North_Wind_and_the_Sun.ogg-ce5262eb75ba71cbb5197ccf59d72972.oggstr" ]
+dest_files=["res://.godot/imported/North_Wind_and_the_Sun.ogg-ce5262eb75ba71cbb5197ccf59d72972.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

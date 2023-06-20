@@ -1,4 +1,4 @@
-extends Tabs
+extends TabBar
 
 const VISEME_DESCRIPTIONS := {
 Visemes.VISEME.VISEME_CH: "Viseme CH",
@@ -172,21 +172,21 @@ This phoneme is the L sound in Lot, chiLd, and Lay.""",
 
 
 ## Calibration tree path
-export (NodePath) var calibration_tree
+@export var calibration_tree : NodePath
 
 
 ## Currently selected viseme
 var _selected_viseme: int
 
 ## Calibration tree node
-onready var _calibration_tree: CalibrationTree = get_node(calibration_tree)
+@onready var _calibration_tree: CalibrationTree = get_node(calibration_tree)
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_calibration_tree.connect("item_selected", self, "_on_CalibrationTree_item_selected")
-	LipSyncGlobals.connect("file_data_changed", self, "_on_file_data_changed")
-	$VisemeContainer/HBoxContainer/WeightSlider.connect("value_changed", self, "_on_weight_slider_value_changed")
+	_calibration_tree.connect("item_selected", Callable(self, "_on_CalibrationTree_item_selected"))
+	LipSyncGlobals.connect("file_data_changed", Callable(self, "_on_file_data_changed"))
+	$VisemeContainer/HBoxContainer/WeightSlider.connect("value_changed", Callable(self, "_on_weight_slider_value_changed"))
 
 
 func _on_CalibrationTree_item_selected():
@@ -233,7 +233,7 @@ func _update_inspector():
 
 		# Populate bars
 		for i in LipSyncFingerprint.BANDS_COUNT:
-			var bar: TextureProgress = $FingerprintBars.get_child(i)
+			var bar: TextureProgressBar = $FingerprintBars.get_child(i)
 			bar.value = fingerprint.values[i] * max_scale
 
 		# Show fingerprint bars

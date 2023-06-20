@@ -1,4 +1,4 @@
-extends Tabs
+extends TabBar
 
 
 ## Last visemes matches
@@ -19,5 +19,5 @@ func _process(delta):
 	# Populate the bars
 	for viseme in Visemes.VISEME.COUNT:
 		var weight: float = _matches[viseme]
-		var bar: TextureProgress = $GridContainer.get_child(viseme)
+		var bar: TextureProgressBar = $GridContainer.get_child(viseme)
 		bar.value = weight

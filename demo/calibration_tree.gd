@@ -56,24 +56,24 @@ const phoneme_descriptions = {
 
 
 # Icons for buttons
-onready var delete_icon = load("res://assets/open_iconic/delete.png")
-onready var microphone_icon = load("res://assets/open_iconic/microphone.png")
-onready var plus_icon = load("res://assets/open_iconic/plus.png")
+@onready var delete_icon = load("res://assets/open_iconic/delete.png")
+@onready var microphone_icon = load("res://assets/open_iconic/microphone.png")
+@onready var plus_icon = load("res://assets/open_iconic/plus.png")
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Connect the file data changed event
-	LipSyncGlobals.connect("file_data_changed", self, "_on_file_data_changed")
+	LipSyncGlobals.connect("file_data_changed", Callable(self, "_on_file_data_changed"))
 	
 	# Connect the button-pressed event
-	connect("button_pressed", self, "_on_button_pressed")
-	connect("item_edited", self, "_on_item_edited")
+	connect("button_pressed", Callable(self, "_on_button_pressed"))
+	connect("item_edited", Callable(self, "_on_item_edited"))
 
 	# Configure the columns
 	set_column_expand(0, true)
 	set_column_expand(1, false)
-	set_column_min_width(1, 60)
+	set_column_custom_minimum_width(1, 60)
 
 	# Populate the tree
 	_populate_tree()

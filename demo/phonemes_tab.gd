@@ -1,4 +1,4 @@
-extends Tabs
+extends TabBar
 
 
 ## Last phoneme matches
@@ -20,5 +20,5 @@ func _process(delta):
 	for phoneme in Phonemes.PHONEME.COUNT:
 		var deviation: float = _matches[phoneme]
 		var value := 0.0 if deviation < 0.0 else 1.0 - deviation
-		var bar: TextureProgress = $GridContainer.get_child(phoneme)
+		var bar: TextureProgressBar = $GridContainer.get_child(phoneme)
 		bar.value = value

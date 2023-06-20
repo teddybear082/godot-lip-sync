@@ -194,22 +194,22 @@ const VISEMES_DEF = [
 
 
 ## Audio bus name
-export var audio_bus_name := "Mic"
+@export var audio_bus_name := "Mic"
 
 ## Add microphone to bus
-export var add_microphone := true
+@export var add_microphone := true
 
 ## Mute the audio
-export var mute_audio := true
+@export var mute_audio := true
 
 ## Audio-Match precision
-export var precision := 0.3
+@export var precision := 0.3
 
 ## Slew rate
-export var slew := 20.0
+@export var slew := 20.0
 
 ## Silence threshold
-export var silence := 0.15
+@export var silence := 0.15
 
 
 # Raw energy for each band (0..1)
@@ -296,12 +296,12 @@ func _process(_delta: float) -> void:
 			distance = min(distance, _fingerprint_distance(fingerprint, reference))
 
 		# Save the distance
-		var score := 1.0 / max(0.01, distance)
+		var score = 1.0 / max(0.01, distance)
 		scores[shape] = score
 		score_sum += score
 
 	# Update viseme scores
-	var score_scale := 1.0 / score_sum
+	var score_scale = 1.0 / score_sum
 	var slew_scale = slew * _delta
 	for i in VISEME.COUNT:
 		var old_weight: float = visemes[i]

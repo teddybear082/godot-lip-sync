@@ -6,53 +6,14 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
-
-_global_script_classes=[ {
-"base": "Tree",
-"class": "CalibrationTree",
-"language": "GDScript",
-"path": "res://demo/calibration_tree.gd"
-}, {
-"base": "Node",
-"class": "LipSync",
-"language": "GDScript",
-"path": "res://addons/godot-lip-sync/lip_sync.gd"
-}, {
-"base": "Reference",
-"class": "LipSyncFingerprint",
-"language": "GDScript",
-"path": "res://addons/godot-lip-sync/fingerprint.gd"
-}, {
-"base": "Resource",
-"class": "LipSyncTraining",
-"language": "GDScript",
-"path": "res://addons/godot-lip-sync/lip_sync_training.gd"
-}, {
-"base": "Reference",
-"class": "Phonemes",
-"language": "GDScript",
-"path": "res://addons/godot-lip-sync/phonemes.gd"
-}, {
-"base": "Reference",
-"class": "Visemes",
-"language": "GDScript",
-"path": "res://addons/godot-lip-sync/visemes.gd"
-} ]
-_global_script_class_icons={
-"CalibrationTree": "",
-"LipSync": "",
-"LipSyncFingerprint": "",
-"LipSyncTraining": "",
-"Phonemes": "",
-"Visemes": ""
-}
+config_version=5
 
 [application]
 
 config/name="Godot LipSync Demo"
 config/description="Godot LipSync Demo v0.0.0"
 run/main_scene="res://demo/lip_sync_demo.tscn"
+config/features=PackedStringArray("4.0")
 config/icon="res://icon.png"
 
 [audio]

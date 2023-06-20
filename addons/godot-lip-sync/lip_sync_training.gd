@@ -1,4 +1,4 @@
-tool
+@tool
 class_name LipSyncTraining
 extends Resource
 
@@ -10,12 +10,12 @@ const MAX_DEVIATION := 1000.0
 ## Dictionary of phonemes
 ## 
 ## This dictionary maps a phoneme to an array of speech fingerprints.
-export(Dictionary) var training
+@export var training : Dictionary
 
 ## Dictionary of weights
 ##
 ## This dictionary maps visemes to weights (deviation radius)
-export(Dictionary) var weights
+@export var weights : Dictionary
 
 
 func _init():
@@ -71,7 +71,7 @@ func match_visemes(fingerprint: LipSyncFingerprint, matches: Array):
 			weight = weights[viseme]
 
 		# Convert to weight
-		weight = range_lerp(min_deviation, 0.0, weight, 1.0, 0.0)
+		weight = remap(min_deviation, 0.0, weight, 1.0, 0.0)
 		weight = clamp(weight, 0.0, 1.0)
 
 		# Save in the results

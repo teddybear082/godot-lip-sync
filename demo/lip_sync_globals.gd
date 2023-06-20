@@ -62,7 +62,7 @@ func load_file(path: String):
 ## Save the training data file to the current file-name
 func save_file():
 	# Save the resource
-	ResourceSaver.save(file_name, file_data)
+	ResourceSaver.save(file_data, file_name)
 	file_modified = false
 
 	# Report file changed

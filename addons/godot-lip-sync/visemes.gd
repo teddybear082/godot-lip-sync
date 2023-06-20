@@ -4,7 +4,7 @@ class_name Visemes
 ## List of standard visemes
 enum VISEME {
 	## Silent viseme
-	VISEME_SILENT = 0
+	VISEME_SILENT = 0,
 
 	## Viseme CH created by:
 	## - Voiceless postalveolar affricate [tS] (CHeck, CHoose, beaCH, marCH)

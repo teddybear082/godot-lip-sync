@@ -22,20 +22,20 @@ func _ready():
 	get_tree().set_auto_accept_quit(false)
 
 	# Connect file state changed
-	LipSyncGlobals.connect("file_state_changed", self, "_on_file_state_changed")
+	LipSyncGlobals.connect("file_state_changed", Callable(self, "_on_file_state_changed"))
 
 	# Connect main menu signals
-	$MainMenuBar.connect("menu_file_new", self, "_on_file_new")
-	$MainMenuBar.connect("menu_file_open", self, "_on_file_open")
-	$MainMenuBar.connect("menu_file_save", self, "_on_file_save")
-	$MainMenuBar.connect("menu_file_save_as", self, "_on_file_save_as")
-	$MainMenuBar.connect("menu_file_exit", self, "_on_file_exit")
-	$MainMenuBar.connect("menu_audio_microphone", self, "_on_audio_microphone")
-	$MainMenuBar.connect("menu_audio_microphone_loop", self, "_on_audio_microphone_loop")
-	$MainMenuBar.connect("menu_audio_play_resource", self, "_on_audio_play_resource")
-	$MainMenuBar.connect("menu_audio_play_file", self, "_on_audio_play_file")
-	$MainMenuBar.connect("menu_audio_stop", self, "_on_audio_stop")
-	$MainMenuBar.connect("menu_help_about", self, "_on_help_about")
+	$MainMenuBar.connect("menu_file_new", Callable(self, "_on_file_new"))
+	$MainMenuBar.connect("menu_file_open", Callable(self, "_on_file_open"))
+	$MainMenuBar.connect("menu_file_save", Callable(self, "_on_file_save"))
+	$MainMenuBar.connect("menu_file_save_as", Callable(self, "_on_file_save_as"))
+	$MainMenuBar.connect("menu_file_exit", Callable(self, "_on_file_exit"))
+	$MainMenuBar.connect("menu_audio_microphone", Callable(self, "_on_audio_microphone"))
+	$MainMenuBar.connect("menu_audio_microphone_loop", Callable(self, "_on_audio_microphone_loop"))
+	$MainMenuBar.connect("menu_audio_play_resource", Callable(self, "_on_audio_play_resource"))
+	$MainMenuBar.connect("menu_audio_play_file", Callable(self, "_on_audio_play_file"))
+	$MainMenuBar.connect("menu_audio_stop", Callable(self, "_on_audio_stop"))
+	$MainMenuBar.connect("menu_help_about", Callable(self, "_on_help_about"))
 
 	# Update the window title
 	_on_file_state_changed()
@@ -43,7 +43,7 @@ func _ready():
 
 ## Handle for user trying to close application
 func _notification(what):
-	if what == NOTIFICATION_WM_QUIT_REQUEST:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		_on_file_exit()
 
 
@@ -159,4 +159,4 @@ func _on_AudioFileDialog_file_selected(path):
 
 ## Handle file state changed
 func _on_file_state_changed():
-	OS.set_window_title("Godot LipSync Training: " + LipSyncGlobals.file_display_name())
+	DisplayServer.window_set_title("Godot LipSync Training: " + LipSyncGlobals.file_display_name())
