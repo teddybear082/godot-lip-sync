@@ -28,7 +28,7 @@ func play_resource(name: String):
 func play_file(file_name: String):
 	# Load the file
 	var file = FileAccess.open(file_name, FileAccess.READ)
-	var data = file.get_buffer(file.get_len())
+	var data = file.get_buffer(file.get_length())
 	file.close()
 
 	# Play the stream
@@ -42,6 +42,13 @@ func play_file(file_name: String):
 		mp3_stream.data = data
 		mp3_stream.loop = true
 		_play_stream(mp3_stream, false)
+	elif file_name.ends_with(".wav"):
+		var wav_stream = AudioStreamWAV.new()
+		wav_stream.data = data
+		wav_stream.format = AudioStreamWAV.FORMAT_16_BITS
+		wav_stream.mix_rate = 22050
+		wav_stream.loop_mode = AudioStreamWAV.LOOP_DISABLED
+		_play_stream(wav_stream, false)
 
 func _play_stream(audio_stream: AudioStream, mute_bus: bool):
 	# Stop any current playback

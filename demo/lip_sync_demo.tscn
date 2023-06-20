@@ -1133,7 +1133,9 @@ dialog_text = "The current audio training resource data is modified. Do you wish
 dialog_autowrap = true
 
 [node name="LoadTrainingFileDialog" type="FileDialog" parent="."]
+ok_button_text = "Open"
 mode_overrides_title = false
+file_mode = 0
 access = 2
 filters = PackedStringArray("*.tres; Resource Files")
 
@@ -1143,9 +1145,12 @@ access = 2
 filters = PackedStringArray("*.tres; Resource Files")
 
 [node name="AudioFileDialog" type="FileDialog" parent="."]
+size = Vector2i(452, 162)
+ok_button_text = "Open"
 mode_overrides_title = false
+file_mode = 0
 access = 2
-filters = PackedStringArray("*.mp3; MP3 Files", "*.ogg; Ogg Files")
+filters = PackedStringArray("*.mp3; MP3 Files", "*.ogg; Ogg Files", "*.wav; WAV Files")
 
 [node name="AboutDialog" type="AcceptDialog" parent="."]
 
