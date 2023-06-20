@@ -29,6 +29,7 @@ anchor_bottom = 1.0
 color = Color(0.14902, 0.172549, 0.231373, 1)
 
 [node name="MainMenuBar" type="HBoxContainer" parent="."]
+top_level = true
 layout_mode = 0
 script = ExtResource("7")
 
@@ -110,6 +111,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "To inspect a calibration item, select it in the calibration tree."
 
 [node name="VisemeContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector"]
@@ -118,6 +121,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VisemeDescription" type="RichTextLabel" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector/VisemeContainer"]
 layout_mode = 2
@@ -145,6 +150,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="FingerprintBars" type="HBoxContainer" parent="HSplitContainer/VSplitContainer/HSplitContainer/InspectorTabContainer/Inspector"]
 visible = false
@@ -152,6 +159,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -348,6 +357,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Bar1" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Fingerprint/FingerprintBars"]
 layout_mode = 2
@@ -539,6 +550,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 columns = 23
 
 [node name="Bar1" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Phonemes/GridContainer"]
@@ -876,6 +889,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 columns = 15
 
 [node name="Bar1" type="TextureProgressBar" parent="HSplitContainer/VSplitContainer/HSplitContainer/LiveTabContainer/Visemes/GridContainer"]

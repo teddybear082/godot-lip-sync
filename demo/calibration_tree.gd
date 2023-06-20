@@ -67,7 +67,7 @@ func _ready():
 	LipSyncGlobals.connect("file_data_changed", Callable(self, "_on_file_data_changed"))
 	
 	# Connect the button-pressed event
-	connect("button_pressed", Callable(self, "_on_button_pressed"))
+	connect("button_clicked", Callable(self, "_on_button_pressed"))
 	connect("item_edited", Callable(self, "_on_item_edited"))
 
 	# Configure the columns
@@ -80,7 +80,7 @@ func _ready():
 
 
 ## Handle button presses
-func _on_button_pressed(item: TreeItem, _column: int, id: int):
+func _on_button_pressed(item: TreeItem, _column: int, id: int, _mouse_button_index: int):
 	match id:
 		BUTTON_ADD:
 			_on_add_fingerprint(item)

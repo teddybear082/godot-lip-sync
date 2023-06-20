@@ -1,16 +1,3 @@
 res://default_bus_layout.tres
 res://demo/lip_sync_demo.tscn
-res://addons/godot-lip-sync/lip_sync_training.gd
-res://addons/godot-lip-sync/visemes.gd
-res://demo/lip_sync_demo.gd
-res://demo/lip_sync_globals.gd
-res://addons/godot-lip-sync/lip_sync.gd
-res://addons/godot-lip-sync/talking_head.gd
-res://demo/audio_stream_player.gd
 res://demo/calibration_tree.gd
-res://demo/main_menu_bar.gd
-res://demo/mouse_look_viewport.gd
-res://demo/visemes_tab.gd
-res://demo/fingerprint_tab.gd
-res://demo/inspector_tab.gd
-res://demo/phonemes_tab.gd
