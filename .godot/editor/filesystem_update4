@@ -1,2 +1,3 @@
 res://default_bus_layout.tres
 res://demo/lip_sync_demo.tscn
+res://demo/audio_stream_player.gd
